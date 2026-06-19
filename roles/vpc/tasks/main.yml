@@ -28,4 +28,4 @@
     vpc_id: "{{ vpc.vpc.id }}"
     routes:
       - dest: 0.0.0.0/0
-        gateway_id: "{{ igw.gateway_id }}"i
+        gateway_id: "{{ igw.gateway_id }}"
