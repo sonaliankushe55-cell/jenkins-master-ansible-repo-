@@ -12,7 +12,7 @@
     region: ap-south-1
     vpc_id: "{{ vpc.vpc.id }}"
     cidr: 10.0.1.0/24
-    az: us-west-1a
+    az: ap-south-1a
     state: present
 
 - name: Create IGW
