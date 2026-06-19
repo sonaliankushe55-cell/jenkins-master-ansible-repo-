@@ -1,0 +1,31 @@
+---
+- name: Create VPC
+  amazon.aws.ec2_vpc_net:
+    name: Sonali-VPC-ansible
+    cidr_block: 10.0.0.0/16
+    region: ap-south-1
+    state: present
+  register: vpc
+
+- name: Create Public Subnet
+  amazon.aws.ec2_vpc_subnet:
+    region: ap-south-1
+    vpc_id: "{{ vpc.vpc.id }}"
+    cidr: 10.0.1.0/24
+    az: us-west-1a
+    state: present
+
+- name: Create IGW
+  amazon.aws.ec2_vpc_igw:
+    region: ap-south-1
+    vpc_id: "{{ vpc.vpc.id }}"
+    state: present
+  register: igw
+
+- name: Create Route Table
+  amazon.aws.ec2_vpc_route_table:
+    region: ap-south-1
+    vpc_id: "{{ vpc.vpc.id }}"
+    routes:
+      - dest: 0.0.0.0/0
+        gateway_id: "{{ igw.gateway_id }}"i

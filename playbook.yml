@@ -1,0 +1,9 @@
+---
+- hosts: localhost
+  connection: local
+
+  vars:
+    aws_region: ap-south-1
+
+  roles:
+    - vpc 
